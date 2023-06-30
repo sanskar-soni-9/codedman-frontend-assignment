@@ -14,7 +14,7 @@ export const metadata = {
 
 const getData = async () => {
   const filePath = path.join(process.cwd(), "user.json");
-  const jsonData = await fsPromises.readFile(filePath);
+  const jsonData = await fsPromises.readFile(filePath, "utf8");
   const objectData = JSON.parse(jsonData);
   return objectData;
 };
@@ -28,9 +28,9 @@ export default async function RootLayout({
   console.log(data);
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <Header notifications={1} imageUrl={data.imageUrl} level={data.level}/>
-        {children}
+      <body className={inter.className + " px-10 pt-5"}>
+        <Header notifications={1} imageUrl={data.imageUrl} level={data.level} />
+        <main>{children}</main>
       </body>
     </html>
   );
