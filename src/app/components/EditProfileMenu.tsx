@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 
 import EditProfileMenuLink from "./EditProfileMenuLink";
@@ -14,6 +14,11 @@ const EditProfileMenuList = [
 const EditProfileMenu: React.FC = () => {
   const path = usePathname().slice(14);
   const [activeMenuLink, setActiveMenuLink] = useState(path);
+
+  useEffect(() => {
+    setActiveMenuLink(path);
+  }, [path]);
+
   return (
     <div className="bg-zinc-100 py-6 pr-6 rounded-2xl text-zinc-400">
       {EditProfileMenuList.map(({ id, title, link }) => {
