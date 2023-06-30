@@ -22,10 +22,15 @@ export const Header: React.FC<HeaderProps> = ({
   return (
     <>
       {isProfileMenu && (
-        <div className="absolute top-0 right-0 left-0 bottom-0 z-40" onClick={() => setIsProfileMenu(!isProfileMenu)}></div>
+        <div
+          className="absolute top-0 right-0 left-0 bottom-0 z-40"
+          onClick={() => setIsProfileMenu(!isProfileMenu)}
+        ></div>
       )}
       <nav className="flex justify-between items-center gap-3">
-        <h1 className="font-bold text-2xl">codedamn</h1>
+        <Link href="/">
+          <h1 className="font-bold text-2xl">codedamn</h1>
+        </Link>
         <div className="flex items-center gap-6">
           <div className="hidden border border-zinc-100 px-3 py-2 rounded-xl md:flex">
             <Image
