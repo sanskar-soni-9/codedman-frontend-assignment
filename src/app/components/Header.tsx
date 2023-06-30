@@ -19,6 +19,8 @@ export const Header: React.FC<HeaderProps> = ({
 }) => {
   const [isProfileMenu, setIsProfileMenu] = useState(false);
 
+  const imageLoader = () => imageUrl;
+
   return (
     <>
       {isProfileMenu && (
@@ -67,9 +69,13 @@ export const Header: React.FC<HeaderProps> = ({
               onClick={() => setIsProfileMenu(!isProfileMenu)}
             >
               <>
-                <img
+                <Image
+                  loader={imageLoader}
+                  unoptimized
                   src={imageUrl}
                   alt="profile image"
+                  width={42}
+                  height={42}
                   className="rounded-full w-[42px] min-w-[-42px]"
                 />
                 <Image
