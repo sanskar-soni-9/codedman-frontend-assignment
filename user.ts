@@ -17,7 +17,7 @@ export type UserSocials = {
   linkedin: string;
   facebook: string;
   instagram: string;
-  dribble: string;
+  dribbble: string;
   behance: string;
 };
 
@@ -106,7 +106,7 @@ const userData: UserData = {
     linkedin: "",
     facebook: "",
     instagram: "",
-    dribble: "",
+    dribbble: "",
     behance: "",
   },
   portfolio: {
