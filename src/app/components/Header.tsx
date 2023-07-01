@@ -1,10 +1,14 @@
 "use client";
 import React, { useState } from "react";
 import { useAppSelector } from "@/redux/hooks";
-import { selectImgaeUrl, selectLevel, selectNotifications } from "@/redux/userData";
+import {
+  selectImgaeUrl,
+  selectLevel,
+  selectNotifications,
+} from "@/redux/userData";
 import Link from "next/link";
 import Image from "next/image";
-import CustomDropdown from "./CustomDropdown";
+import CustomDropdown from "./input/CustomDropdown";
 
 const options = ["Courses", "Videos", "Roadmaps"];
 
@@ -86,6 +90,9 @@ export const Header: React.FC = () => {
               </>
               {isProfileMenu && (
                 <div className="absolute z-50 -left-9 w-28 text-sm border bg-white shadow-md">
+                  <div className="px-3 py-2 w-full hover:bg-gray-100 text-zinc-800 font-medium">
+                    <Link href="/profile">Profile</Link>
+                  </div>
                   <div className="px-3 py-2 w-full hover:bg-gray-100 text-zinc-800 font-medium">
                     <Link href="/profile/edit">Edit Profile</Link>
                   </div>

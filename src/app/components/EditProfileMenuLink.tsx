@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 
-import ChromeIcon from "./ChromeIcon";
+import ChromeIcon from "./icon/ChromeIcon";
 
 interface EditProfileMenuLinkProps {
   id: string;
