@@ -29,7 +29,9 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   return (
     <div
       className={`p-4 flex flex-col gap-5 rounded-lg cursor-pointer ${
-        isActive ? "bg-primary-50 border-primary-600 border-2" : "bg-zinc-50 border"
+        isActive
+          ? "bg-primary-50 border-primary-600 border-2"
+          : "bg-zinc-50 border"
       }`}
       onClick={() => handleClick(id)}
     >
@@ -60,9 +62,9 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
         </div>
         <div className="mb-3">
           <div className="flex gap-2 items-center text-sm font-normal text-zinc-500">
-            {techStack.map((tech) => {
+            {techStack.map((tech, index) => {
               return (
-                <div className="flex gap-2 items-center">
+                <div className="flex gap-2 items-center" key={index}>
                   <p>{tech}</p>
                   <p className="font-bold text-xl">·</p>
                 </div>
@@ -76,6 +78,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
             {contributorsImgs.map((image, index) => {
               return (
                 <Image
+                  key={index}
                   loader={() => image}
                   src="afea"
                   alt="profile image"
