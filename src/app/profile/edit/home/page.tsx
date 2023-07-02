@@ -1,6 +1,10 @@
 "use client";
-import React, { useState } from "react";
-import { selectProfile, updateUserProfile } from "@/redux/userData";
+import React from "react";
+import {
+  updateUserProfile,
+  resetProfileData,
+  selectUserData,
+} from "@/redux/userData";
 import { useAppSelector, useAppDispatch } from "@/redux/hooks";
 import Image from "next/image";
 import PrimaryBtn from "@/app/components/button/PrimaryBtn";
@@ -10,73 +14,23 @@ import CustomTextarea from "@/app/components/input/CustomTextarea";
 import CustomInputDropdown from "@/app/components/input/CustomInputDropdown";
 import CustomPrimaryCheckBox from "@/app/components/input/CustomPrimaryCheckbox";
 
-import type { UserProfile } from "../../../../../user";
-
 const Page: React.FC = () => {
-  const profileData = useAppSelector(selectProfile);
+  const currentState = useAppSelector(selectUserData);
+  const profileData = currentState.profile;
   const dispatch = useAppDispatch();
-
-  const [displayName, setDisplayName] = useState(profileData.name);
-  const [about, setAbout] = useState(profileData.about);
-  const [dob, setDob] = useState(profileData.dob);
-  const [gender, setGender] = useState(profileData.gender);
-  const [allowFollowers, setAllowFollowers] = useState(
-    profileData.privacy.followers
-  );
-  const [allowXP, setAllowXP] = useState(profileData.privacy.xp);
-  const [allowBadges, setAllowBadges] = useState(
-    profileData.privacy.achievementBadges
-  );
 
   const profileImageLoader = () => profileData.imageUrl;
 
-  const handleNameChange = (value: string): void => {
-    setDisplayName(value);
-  };
-  const handleAboutChange = (value: string): void => {
-    setAbout(value);
-  };
-  const handleDateChange = (value: string): void => {
-    setDob(value);
-  };
-  const handleGenderChange = (value: string): void => {
-    setGender(value);
-  };
-  const toggleAllowFollowers = (): void => {
-    setAllowFollowers(!allowFollowers);
-  };
-  const toggleAllowXP = (): void => {
-    setAllowXP(!allowXP);
-  };
-  const toggleAllowBadges = (): void => {
-    setAllowBadges(!allowBadges);
+  const handleProfileChange = (type: string, value: string | boolean) => {
+    dispatch(updateUserProfile({ type, value }));
   };
 
   const resetForm = (): void => {
-    setDisplayName(profileData.name);
-    setAbout(profileData.about);
-    setDob(profileData.dob);
-    setGender(profileData.gender);
-    setAllowFollowers(profileData.privacy.followers);
-    setAllowXP(profileData.privacy.xp);
-    setAllowBadges(profileData.privacy.achievementBadges);
+    dispatch(resetProfileData());
   };
 
   const applyChanges = (): void => {
-    const data: UserProfile = {
-      name: displayName,
-      imageUrl: profileData.imageUrl,
-      about,
-      dob,
-      gender,
-      privacy: {
-        followers: allowFollowers,
-        xp: allowXP,
-        achievementBadges: allowBadges,
-      },
-      profession: profileData.profession,
-    };
-    dispatch(updateUserProfile(data));
+    localStorage.setItem("userData", JSON.stringify(currentState));
   };
 
   return (
@@ -102,27 +56,27 @@ const Page: React.FC = () => {
           name="Display name"
           type="text"
           placeholder="Full Name"
-          value={displayName}
-          handleChange={handleNameChange}
+          value={profileData.name}
+          handleChange={(value) => handleProfileChange("name", value)}
           extraText="Name entered above will be used for all issued certificates"
         />
         <CustomTextarea
           name="About"
-          value={about}
-          handleChange={handleAboutChange}
+          value={profileData.about}
+          handleChange={(value) => handleProfileChange("about", value)}
         />
         <CustomInput
           name="About"
           type="date"
           placeholder="DD/MM/YY"
-          value={dob}
-          handleChange={handleDateChange}
+          value={profileData.dob}
+          handleChange={(value) => handleProfileChange("dob", value)}
         />
         <CustomInputDropdown
           name="Gender"
-          value={gender}
+          value={profileData.gender}
           placeholder="What is your gender"
-          handleChange={handleGenderChange}
+          handleChange={(value) => handleProfileChange("gender", value)}
           list={["Male", "Female", "Other"]}
         />
       </form>
@@ -142,8 +96,8 @@ const Page: React.FC = () => {
               </p>
             </div>
             <CustomPrimaryCheckBox
-              isOn={allowFollowers}
-              handleChange={toggleAllowFollowers}
+              isOn={profileData.privacy.followers}
+              handleChange={(value) => handleProfileChange("followers", value)}
             />
           </div>
           <div className="flex justify-between items-center">
@@ -154,8 +108,8 @@ const Page: React.FC = () => {
               </p>
             </div>
             <CustomPrimaryCheckBox
-              isOn={allowXP}
-              handleChange={toggleAllowXP}
+              isOn={profileData.privacy.xp}
+              handleChange={(value) => handleProfileChange("xp", value)}
             />
           </div>
           <div className="flex justify-between items-center">
@@ -166,8 +120,8 @@ const Page: React.FC = () => {
               </p>
             </div>
             <CustomPrimaryCheckBox
-              isOn={allowBadges}
-              handleChange={toggleAllowBadges}
+              isOn={profileData.privacy.achievementBadges}
+              handleChange={(value) => handleProfileChange("badges", value)}
             />
           </div>
         </div>

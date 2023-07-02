@@ -18,7 +18,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className + " px-10 pt-5"}>
+      <body className={inter.className + " px-10 pt-5 text-zinc-900"}>
         <Providers>
           <Header />
           {children}

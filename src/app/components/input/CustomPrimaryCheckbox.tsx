@@ -2,7 +2,7 @@ import React from "react";
 
 interface CustomPrimaryCheckBoxProps {
   isOn: boolean;
-  handleChange: () => void;
+  handleChange: (value: boolean) => void;
 }
 
 const CustomPrimaryCheckBox: React.FC<CustomPrimaryCheckBoxProps> = ({
@@ -12,7 +12,7 @@ const CustomPrimaryCheckBox: React.FC<CustomPrimaryCheckBoxProps> = ({
   return (
     <div
       className={`rounded-full w-11 h-6 px-0.5 py-0.5 cursor-pointer duration-100 ${isOn ? "bg-primary-600" : "bg-zinc-400" }`}
-      onClick={handleChange}
+      onClick={() => handleChange(!isOn)}
     >
       <div
         className={`bg-white w-5 h-5 rounded-full ${

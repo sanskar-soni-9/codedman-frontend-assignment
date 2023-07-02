@@ -12,14 +12,7 @@ export type UserProfile = {
   };
 };
 
-export type UserSocials = {
-  github: string;
-  linkedin: string;
-  facebook: string;
-  instagram: string;
-  dribbble: string;
-  behance: string;
-};
+export type UserSocials = { type: string; value: string }[];
 
 export type UserPortfolio = {
   playgrounds: {
@@ -30,6 +23,7 @@ export type UserPortfolio = {
     icon: string;
     sharedWith: string[];
     show: boolean;
+    imageUrls: string[];
   }[];
   projects: {
     id: number;
@@ -101,14 +95,14 @@ const userData: UserData = {
       achievementBadges: true,
     },
   },
-  socials: {
-    github: "github/profile.com",
-    linkedin: "",
-    facebook: "",
-    instagram: "",
-    dribbble: "",
-    behance: "",
-  },
+  socials: [
+    { type: "Github", value: "github/profile.com" },
+    { type: "Linkedin", value: "" },
+    { type: "Facebook", value: "" },
+    { type: "Instagram", value: "" },
+    { type: "Dribbble", value: "" },
+    { type: "Behance", value: "" },
+  ],
   portfolio: {
     playgrounds: [
       {
@@ -129,6 +123,10 @@ const userData: UserData = {
           "Sanskar",
         ],
         show: true,
+        imageUrls: [
+          "https://www.figma.com/file/TXLwYa51OaUfXRjO5AQvL0/image/3cc94ed922f137a58e97cebb65693bfda4ce4006",
+          "https://www.figma.com/file/TXLwYa51OaUfXRjO5AQvL0/image/60f9fe52539057a35a53d60a2ea84a869314446c",
+        ],
       },
       {
         id: 2,
@@ -148,6 +146,10 @@ const userData: UserData = {
           "Sanskar",
         ],
         show: true,
+        imageUrls: [
+          "https://www.figma.com/file/TXLwYa51OaUfXRjO5AQvL0/image/3cc94ed922f137a58e97cebb65693bfda4ce4006",
+          "https://www.figma.com/file/TXLwYa51OaUfXRjO5AQvL0/image/60f9fe52539057a35a53d60a2ea84a869314446c",
+        ],
       },
       {
         id: 3,
@@ -167,6 +169,10 @@ const userData: UserData = {
           "Sanskar",
         ],
         show: true,
+        imageUrls: [
+          "https://www.figma.com/file/TXLwYa51OaUfXRjO5AQvL0/image/3cc94ed922f137a58e97cebb65693bfda4ce4006",
+          "https://www.figma.com/file/TXLwYa51OaUfXRjO5AQvL0/image/60f9fe52539057a35a53d60a2ea84a869314446c",
+        ],
       },
       {
         id: 4,
@@ -186,6 +192,10 @@ const userData: UserData = {
           "Sanskar",
         ],
         show: true,
+        imageUrls: [
+          "https://www.figma.com/file/TXLwYa51OaUfXRjO5AQvL0/image/3cc94ed922f137a58e97cebb65693bfda4ce4006",
+          "https://www.figma.com/file/TXLwYa51OaUfXRjO5AQvL0/image/60f9fe52539057a35a53d60a2ea84a869314446c",
+        ],
       },
     ],
     projects: [
