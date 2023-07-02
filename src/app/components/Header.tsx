@@ -1,11 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { useAppSelector } from "@/redux/hooks";
-import {
-  selectImgaeUrl,
-  selectLevel,
-  selectNotifications,
-} from "@/redux/userData";
+import { selectUserData } from "@/redux/userData";
 import Link from "next/link";
 import Image from "next/image";
 import CustomDropdown from "./input/CustomDropdown";
@@ -13,10 +9,11 @@ import CustomDropdown from "./input/CustomDropdown";
 const options = ["Courses", "Videos", "Roadmaps"];
 
 export const Header: React.FC = () => {
+  const currentState = useAppSelector(selectUserData);
   const [isProfileMenu, setIsProfileMenu] = useState(false);
-  const imageUrl = useAppSelector(selectImgaeUrl);
-  const level = useAppSelector(selectLevel);
-  const notifications = useAppSelector(selectNotifications);
+  const imageUrl = currentState.profile.imageUrl;
+  const level = currentState.level;
+  const notifications = currentState.notifications;
 
   const imageLoader = () => imageUrl;
 

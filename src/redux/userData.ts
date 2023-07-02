@@ -9,11 +9,6 @@ if (typeof localStorage !== "undefined" && localStorage.getItem("userData")) {
 
 const initialState = storageData;
 
-interface UpdateUserPortfolio {
-  playgrounds: number[];
-  projects: number[];
-}
-
 export const userDataSlice = createSlice({
   name: "userData",
   initialState,
@@ -98,9 +93,12 @@ export const userDataSlice = createSlice({
           return;
         }
         default: {
-          console.error("Invalid portfolio type.")
+          console.error("Invalid portfolio type.");
         }
       }
+    },
+    resetPortfolioData: (state) => {
+      state.portfolio = initialState.portfolio;
     },
   },
 });
@@ -111,15 +109,10 @@ export const {
   updateUserSocials,
   resetSocialsData,
   updateUserPortfolio,
+  resetPortfolioData,
 } = userDataSlice.actions;
 
 export const selectUserData = (state: RootState) => state.userData;
-export const selectPortfolio = (state: RootState) => state.userData.portfolio;
-export const selectResume = (state: RootState) => state.userData.resume;
-export const selectImgaeUrl = (state: RootState) =>
-  state.userData.profile.imageUrl;
-export const selectLevel = (state: RootState) => state.userData.level;
-export const selectNotifications = (state: RootState) =>
-  state.userData.notifications;
+export const selectPortfolioData = (state: RootState) => state.userData.portfolio;
 
 export default userDataSlice.reducer;
