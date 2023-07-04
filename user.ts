@@ -86,7 +86,10 @@ export type UserResume = {
     title: string;
   }[];
   interests: string[];
-  languages: string[];
+  languages: {
+    icon: string;
+    value: string;
+  }[];
 };
 export type UserData = {
   profile: UserProfile;
@@ -316,8 +319,7 @@ const userData: UserData = {
     ],
   },
   resume: {
-    about:
-      `A self-driven, versatile, reliable, diligent individual who is calm and cheerful with a team-minded approach to work and getting things done.\nA student who is passionate and with a keen eye for design ...`,
+    about: `A self-driven, versatile, reliable, diligent individual who is calm and cheerful with a team-minded approach to work and getting things done.\nA student who is passionate and with a keen eye for design ...`,
     location: "Mumbai, India",
     workExp: [
       {
@@ -422,7 +424,11 @@ const userData: UserData = {
       "Economics",
       "Hiking",
     ],
-    languages: ["English", "Mandarin", "Cantonese Chinese"],
+    languages: [
+      { icon: "united-states", value: "English" },
+      { icon: "taiwan", value: "Mandarin" },
+      { icon: "china", value: "Cantonese Chinese" },
+    ],
   },
 };
 

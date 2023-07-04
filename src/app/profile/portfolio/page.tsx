@@ -114,7 +114,7 @@ const Portfolio: React.FC = () => {
                   icon={certificate.icon}
                   title={certificate.title}
                   issuedOn={certificate.issuedOn}
-                  isActive={false}
+                  forDisplay={true}
                 />
               );
             }
