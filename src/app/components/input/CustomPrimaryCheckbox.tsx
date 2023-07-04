@@ -11,7 +11,7 @@ const CustomPrimaryCheckBox: React.FC<CustomPrimaryCheckBoxProps> = ({
 }) => {
   return (
     <div
-      className={`rounded-full w-11 h-6 px-0.5 py-0.5 cursor-pointer duration-100 ${isOn ? "bg-primary-600" : "bg-zinc-400" }`}
+      className={`rounded-full w-11 h-6 px-0.5 py-0.5 cursor-pointer duration-100 ${isOn ? "bg-indigo-600" : "bg-zinc-400" }`}
       onClick={() => handleChange(!isOn)}
     >
       <div

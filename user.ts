@@ -1,10 +1,21 @@
 export type UserProfile = {
   name: string;
+  level: number;
+  maxStreak: number;
+  exp: number;
+  currentLeague: string;
+  karmaPnts: number;
+  notifications: number;
   imageUrl: string;
   about: string;
   profession: string;
   dob: string;
   gender: string;
+  isProMember: boolean;
+  isEmployed: boolean;
+  job?: string;
+  location: string;
+  graduation: string;
   privacy: {
     followers: boolean;
     xp: boolean;
@@ -35,10 +46,18 @@ export type UserPortfolio = {
     image: string;
     show: boolean;
   }[];
+  certificates: {
+    id: number;
+    icon: string;
+    title: string;
+    issuedOn: string;
+    show: boolean;
+  }[];
 };
 
 export type UserResume = {
   about: string;
+  location: string;
   workExp: {
     icon: string;
     title: string;
@@ -70,8 +89,6 @@ export type UserResume = {
   languages: string[];
 };
 export type UserData = {
-  level: number;
-  notifications: number;
   profile: UserProfile;
   socials: UserSocials;
   portfolio: UserPortfolio;
@@ -79,16 +96,25 @@ export type UserData = {
 };
 
 const userData: UserData = {
-  level: 5,
-  notifications: 1,
   profile: {
     name: "Marina Budarina",
     imageUrl:
       "https://www.figma.com/file/TXLwYa51OaUfXRjO5AQvL0/image/60f9fe52539057a35a53d60a2ea84a869314446c?fuid=1255883831497588317",
+    level: 5,
+    maxStreak: 2,
+    exp: 1200,
+    currentLeague: "Novice",
+    karmaPnts: 120,
+    notifications: 1,
     about: "Lorem ipsum dolor sit amet.",
     profession: "Student",
     dob: "",
     gender: "",
+    isProMember: true,
+    isEmployed: true,
+    job: "Full stack dev at codedamn",
+    graduation: "Harvard'22",
+    location: "Mumbai, India",
     privacy: {
       followers: true,
       xp: true,
@@ -96,12 +122,14 @@ const userData: UserData = {
     },
   },
   socials: [
-    { type: "Github", value: "github/profile.com" },
-    { type: "Linkedin", value: "" },
-    { type: "Facebook", value: "" },
-    { type: "Instagram", value: "" },
+    { type: "Email", value: "marina@gmail.com" },
+    { type: "Github", value: "" },
+    { type: "Linkedin", value: "https://www.linkedin.com" },
+    { type: "Facebook", value: "https://www.instagram.com" },
+    { type: "Instagram", value: "https://www.instagram.com" },
     { type: "Dribbble", value: "" },
     { type: "Behance", value: "" },
+    { type: "YouTube", value: "https://www.youtube.com" },
   ],
   portfolio: {
     playgrounds: [
@@ -256,10 +284,41 @@ const userData: UserData = {
         show: true,
       },
     ],
+    certificates: [
+      {
+        id: 1,
+        icon: "javascript",
+        title: "Advance theoretical Javascript",
+        issuedOn: "Dec 16th, 2022",
+        show: true,
+      },
+      {
+        id: 2,
+        icon: "html-5",
+        title: "HTML/CSS",
+        issuedOn: "Dec 16th, 2022",
+        show: true,
+      },
+      {
+        id: 3,
+        icon: "achievement",
+        title: "Build a decentralised to-do application",
+        issuedOn: "Dec 16th, 2022",
+        show: true,
+      },
+      {
+        id: 4,
+        icon: "react",
+        title: "React JS",
+        issuedOn: "Dec 16th, 2022",
+        show: true,
+      },
+    ],
   },
   resume: {
     about:
-      "A self-driven, versatile, reliable, diligent individual who is calm and cheerful with a team-minded approach to work and getting things done.\nA student who is passionate and with a keen eye for design ...",
+      `A self-driven, versatile, reliable, diligent individual who is calm and cheerful with a team-minded approach to work and getting things done.\nA student who is passionate and with a keen eye for design ...`,
+    location: "Mumbai, India",
     workExp: [
       {
         icon: "google",

@@ -10,7 +10,8 @@ interface PlaygroundCardProps {
   sharedWith: string[];
   isActive: boolean;
   imageUrls: string[];
-  handleClick: (id: number) => void;
+  handleClick?: (id: number) => void;
+  forDisplay?: boolean;
 }
 
 const PlaygroundCard: React.FC<PlaygroundCardProps> = ({
@@ -22,16 +23,17 @@ const PlaygroundCard: React.FC<PlaygroundCardProps> = ({
   sharedWith,
   isActive,
   imageUrls,
+  forDisplay,
   handleClick,
 }) => {
   return (
     <div
-      className={`relative flex gap-3 w-fit p-4 rounded-lg cursor-pointer ${
+      className={`relative flex gap-3 w-full p-4 rounded-lg cursor-pointer ${
         isActive
-          ? "border-primary-600 border-2 bg-primary-50"
+          ? "border-indigo-600 border-2 bg-indigo-50"
           : "border bg-zinc-50"
       }`}
-      onClick={() => handleClick(id)}
+      onClick={() => handleClick && handleClick(id)}
     >
       <div>
         <Image src={`/${icon}.svg`} alt="html-5 icon" width={40} height={40} />
@@ -73,13 +75,15 @@ const PlaygroundCard: React.FC<PlaygroundCardProps> = ({
           </div>
         </div>
       </div>
-      <div
-        className={`absolute rounded-full w-4 h-4 right-4 flex justify-center items-center ${
-          isActive ? "bg-primary-600" : "border border-zinc-200 bg-white"
-        }`}
-      >
-        <div className="rounded-full bg-white w-1.5 h-1.5" />
-      </div>
+      {!forDisplay && (
+        <div
+          className={`absolute rounded-full w-4 h-4 right-4 flex justify-center items-center ${
+            isActive ? "border-2 bg-indigo-600" : "border border-zinc-200 bg-white"
+          }`}
+        >
+          <div className="rounded-full bg-white w-1.5 h-1.5" />
+        </div>
+      )}
     </div>
   );
 };

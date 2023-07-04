@@ -1,5 +1,5 @@
 import React from "react";
-import EditProfileMenu from "../../components/EditProfileMenu";
+import EditProfileMenu from "../components/EditProfileMenu";
 
 interface EditLayoutProps {
   children: React.ReactNode;

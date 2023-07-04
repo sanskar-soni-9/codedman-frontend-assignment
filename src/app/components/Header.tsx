@@ -11,11 +11,6 @@ const options = ["Courses", "Videos", "Roadmaps"];
 export const Header: React.FC = () => {
   const currentState = useAppSelector(selectUserData);
   const [isProfileMenu, setIsProfileMenu] = useState(false);
-  const imageUrl = currentState.profile.imageUrl;
-  const level = currentState.level;
-  const notifications = currentState.notifications;
-
-  const imageLoader = () => imageUrl;
 
   return (
     <>
@@ -43,8 +38,10 @@ export const Header: React.FC = () => {
           </div>
           <div className="flex gap-4 items-center shrink-0">
             <div className="flex items-center px-3 py-2 gap-1">
-              <Image src="/lightning.svg" alt="Logo" width={24} height={24} />
-              <span className="text-base text-zinc-500 font-extrabold">2</span>
+              <Image src="/streak.svg" alt="Logo" width={24} height={24} />
+              <span className="text-base text-zinc-500 font-extrabold">
+                {currentState.profile.maxStreak}
+              </span>
             </div>
             <div className="relative">
               <Image
@@ -54,9 +51,9 @@ export const Header: React.FC = () => {
                 width={24}
                 height={24}
               />
-              {notifications && (
+              {currentState.profile.notifications && (
                 <span className="absolute -top-2 -right-1 bg-accent rounded-full bg-rose-500 text-white text-xs w-4 h-4 text-center">
-                  {notifications}
+                  {currentState.profile.notifications}
                 </span>
               )}
             </div>
@@ -66,9 +63,9 @@ export const Header: React.FC = () => {
             >
               <>
                 <Image
-                  loader={imageLoader}
+                  loader={() => currentState.profile.imageUrl}
                   unoptimized
-                  src={imageUrl}
+                  src={currentState.profile.imageUrl}
                   alt="profile image"
                   width={42}
                   height={42}
@@ -82,7 +79,7 @@ export const Header: React.FC = () => {
                   className="absolute -top-4 right-[-17px] min-w-13 min-h-13"
                 />
                 <span className="absolute text-white font-bold text-sm -top-1 right-0">
-                  {level}
+                  {currentState.profile.level}
                 </span>
               </>
               {isProfileMenu && (
@@ -91,7 +88,7 @@ export const Header: React.FC = () => {
                     <Link href="/profile">Profile</Link>
                   </div>
                   <div className="px-3 py-2 w-full hover:bg-gray-100 text-zinc-800 font-medium">
-                    <Link href="/profile/edit">Edit Profile</Link>
+                    <Link href="/edit">Edit Profile</Link>
                   </div>
                 </div>
               )}

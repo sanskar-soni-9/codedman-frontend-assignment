@@ -66,7 +66,7 @@ const Page: React.FC = () => {
           handleChange={(value) => handleProfileChange("about", value)}
         />
         <CustomInput
-          name="About"
+          name="DOB"
           type="date"
           placeholder="DD/MM/YY"
           value={profileData.dob}

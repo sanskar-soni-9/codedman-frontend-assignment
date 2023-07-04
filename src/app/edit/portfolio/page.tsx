@@ -10,6 +10,7 @@ import PlaygroundCard from "@/app/components/PlaygroundCard";
 import ProjectCard from "@/app/components/ProjectCard";
 import PrimaryBtn from "@/app/components/button/PrimaryBtn";
 import SecondaryBtn from "@/app/components/button/SecondaryBtn";
+import CertificateCard from "@/app/components/CertificateCard";
 
 const Page: React.FC = () => {
   const currentState = useAppSelector(selectUserData);
@@ -21,6 +22,9 @@ const Page: React.FC = () => {
   };
   const handleActiveProjects = (id: number): void => {
     dispatch(updateUserPortfolio({ type: "project", id }));
+  };
+  const handleActiveCertificates = (id: number): void => {
+    dispatch(updateUserPortfolio({ type: "certificate", id }));
   };
   const resetForm = (): void => {
     dispatch(resetPortfolioData());
@@ -76,6 +80,28 @@ const Page: React.FC = () => {
                 contributorsImgs={project.contributorsImages}
                 showBadge={currentState.profile.privacy.achievementBadges}
                 handleClick={handleActiveProjects}
+              />
+            );
+          })}
+        </div>
+      </div>
+      <div className="flex flex-col gap-6">
+        <div className="flex justify-between">
+          <h1 className="text-2xl font-bold">Certificates</h1>
+          <p className="text-base font-normal text-zinc-500">See all</p>
+        </div>
+        <div className="grid grid-cols-2 gap-5">
+          {portfolioData.certificates.map((certificate) => {
+            return (
+              <CertificateCard
+                key={certificate.id}
+                id={certificate.id}
+                title={certificate.title}
+                icon={certificate.icon}
+                issuedOn={certificate.issuedOn}
+                isActive={certificate.show}
+                forDisplay={false}
+                handleClick={handleActiveCertificates}
               />
             );
           })}

@@ -9,7 +9,7 @@ const PrimaryBtn: React.FC<PrimaryBtnProps> = ({ children, handleClick }) => {
   if (handleClick) {
     return (
       <button
-        className="px-4 py-2 bg-primary-600 rounded-lg text-white text-sm font-semibold"
+        className="px-4 py-2 bg-indigo-600 rounded-lg text-white text-sm font-semibold"
         onClick={handleClick}
       >
         {children}
@@ -17,7 +17,7 @@ const PrimaryBtn: React.FC<PrimaryBtnProps> = ({ children, handleClick }) => {
     );
   } else {
     return (
-      <button className="px-4 py-2 bg-primary-600 rounded-lg text-white text-sm font-semibold">
+      <button className="px-4 py-2 bg-indigo-600 rounded-lg text-white text-sm font-semibold">
         {children}
       </button>
     );

@@ -11,7 +11,7 @@ interface ProjectCardProps {
   contributors: number;
   contributorsImgs: string[];
   showBadge: boolean;
-  handleClick: (id: number) => void;
+  handleClick?: (id: number) => void;
 }
 
 const ProjectCard: React.FC<ProjectCardProps> = ({
@@ -29,11 +29,11 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   return (
     <div
       className={`p-4 flex flex-col gap-5 rounded-lg cursor-pointer ${
-        isActive
-          ? "bg-primary-50 border-primary-600 border-2"
+        isActive === true
+          ? "bg-indigo-50 border-indigo-600 border-2"
           : "bg-zinc-50 border"
       }`}
-      onClick={() => handleClick(id)}
+      onClick={() => handleClick && handleClick(id)}
     >
       <div className="relative">
         <Image
@@ -42,14 +42,14 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
           alt="Project image"
           width={300}
           height={170}
-          className="rounded-lg w-[300px] h-[170px]"
+          className="rounded-lg w-full h-full"
         />
         {showBadge && (
           <div className="absolute bottom-2 flex gap-3 left-2">
-            <div className="bg-secondary-200 text-secondary-900 py-0.5 px-3 rounded text-xs font-medium">
+            <div className="bg-sky-200 text-sky-900 py-0.5 px-3 rounded text-xs font-medium">
               Badge
             </div>
-            <div className="bg-secondary-200 text-secondary-900 py-0.5 px-3 rounded text-xs font-medium">
+            <div className="bg-sky-200 text-sky-900 py-0.5 px-3 rounded text-xs font-medium">
               Badge
             </div>
           </div>

@@ -92,6 +92,12 @@ export const userDataSlice = createSlice({
           });
           return;
         }
+        case "certificate": {
+          state.portfolio.certificates.map(certificate => {
+            if(certificate.id === action.payload.id) certificate.show = !certificate.show;
+          })
+          return;
+        }
         default: {
           console.error("Invalid portfolio type.");
         }

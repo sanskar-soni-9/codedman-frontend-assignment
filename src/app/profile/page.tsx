@@ -1,9 +1,8 @@
 import React from "react";
+import { redirect } from "next/navigation";
 
 const Page: React.FC = () => {
-  return (
-    <div>profile</div>
-  )
-}
+  redirect("/profile/portfolio");
+};
 
 export default Page;

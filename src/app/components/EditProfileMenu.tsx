@@ -5,14 +5,14 @@ import { usePathname } from "next/navigation";
 import EditProfileMenuLink from "./EditProfileMenuLink";
 
 const EditProfileMenuList = [
-  { id: "home", title: "Profile", link: "/profile/edit/home" },
-  { id: "socials", title: "Socials", link: "/profile/edit/socials" },
-  { id: "portfolio", title: "Portfolio", link: "/profile/edit/portfolio" },
-  { id: "resume", title: "Resume", link: "/profile/edit/resume" },
+  { id: "profile", title: "Profile", link: "/edit/profile" },
+  { id: "socials", title: "Socials", link: "/edit/socials" },
+  { id: "portfolio", title: "Portfolio", link: "/edit/portfolio" },
+  { id: "resume", title: "Resume", link: "/edit/resume" },
 ];
 
 const EditProfileMenu: React.FC = () => {
-  const path = usePathname().slice(14);
+  const path = usePathname().slice(6);
   const [activeMenuLink, setActiveMenuLink] = useState(path);
 
   useEffect(() => {
