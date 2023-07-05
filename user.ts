@@ -13,6 +13,7 @@ export type UserProfile = {
   gender: string;
   isProMember: boolean;
   isEmployed: boolean;
+  lookingForJob: boolean;
   job?: string;
   location: string;
   graduation: string;
@@ -56,7 +57,6 @@ export type UserPortfolio = {
 };
 
 export type UserResume = {
-  about: string;
   location: string;
   workExp: {
     icon: string;
@@ -84,6 +84,7 @@ export type UserResume = {
   techSkills: {
     icon: string;
     title: string;
+    show: boolean;
   }[];
   interests: string[];
   languages: {
@@ -109,13 +110,15 @@ const userData: UserData = {
     currentLeague: "Novice",
     karmaPnts: 120,
     notifications: 1,
-    about: "Lorem ipsum dolor sit amet.",
+    about:
+      "A self-driven, versatile, reliable, diligent individual who is calm and cheerful with a team-minded approach to work and getting things done.\nA student who is passionate and with a keen eye for design ...",
     profession: "Student",
+    lookingForJob: false,
     dob: "",
     gender: "",
     isProMember: true,
     isEmployed: true,
-    job: "Full stack dev at codedamn",
+    job: "Front-end dev at Google",
     graduation: "Harvard'22",
     location: "Mumbai, India",
     privacy: {
@@ -319,7 +322,6 @@ const userData: UserData = {
     ],
   },
   resume: {
-    about: `A self-driven, versatile, reliable, diligent individual who is calm and cheerful with a team-minded approach to work and getting things done.\nA student who is passionate and with a keen eye for design ...`,
     location: "Mumbai, India",
     workExp: [
       {
@@ -382,38 +384,47 @@ const userData: UserData = {
       {
         icon: "html-5",
         title: "HTML 5",
+        show: true,
       },
       {
         icon: "css",
         title: "CSS 3",
+        show: true,
       },
       {
         icon: "javascript",
         title: "Javascript",
+        show: true,
       },
       {
         icon: "react",
         title: "React",
+        show: true,
       },
       {
         icon: "nextjs",
         title: "Next.js",
+        show: true,
       },
       {
         icon: "mongo",
         title: "Mongo",
+        show: true,
       },
       {
         icon: "node",
         title: "NodeJs",
+        show: true,
       },
       {
         icon: "python",
         title: "Python",
+        show: true,
       },
       {
         icon: "java",
         title: "Java",
+        show: true,
       },
     ],
     interests: [

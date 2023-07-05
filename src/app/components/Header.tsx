@@ -25,7 +25,7 @@ export const Header: React.FC = () => {
           <h1 className="font-bold text-2xl">codedamn</h1>
         </Link>
         <div className="flex items-center gap-6">
-          <div className="hidden border border-zinc-100 px-3 py-2 rounded-xl md:flex">
+          <div className="hidden border border-zinc-100 px-3 py-2 rounded-xl lg:flex">
             <Image
               src="/search.svg"
               alt="Search Logo"
@@ -37,7 +37,7 @@ export const Header: React.FC = () => {
             <CustomDropdown options={options} />
           </div>
           <div className="flex gap-4 items-center shrink-0">
-            <div className="flex items-center px-3 py-2 gap-1">
+            <div className="hidden md:flex items-center px-3 py-2 gap-1">
               <Image src="/streak.svg" alt="Logo" width={24} height={24} />
               <span className="text-base text-zinc-500 font-extrabold">
                 {currentState.profile.maxStreak}

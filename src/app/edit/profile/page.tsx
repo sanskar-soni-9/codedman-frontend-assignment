@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect, useCallback } from "react";
 import {
   updateUserProfile,
   resetProfileData,
@@ -25,16 +25,18 @@ const Page: React.FC = () => {
     dispatch(updateUserProfile({ type, value }));
   };
 
-  const resetForm = (): void => {
+  const resetForm = useCallback((): void => {
     dispatch(resetProfileData());
-  };
+  }, [dispatch]);
 
   const applyChanges = (): void => {
     localStorage.setItem("userData", JSON.stringify(currentState));
   };
 
+  useEffect(() => resetForm, [resetForm]);
+
   return (
-    <div className="flex flex-col gap-10 text-zinc-900 text-sm w-9/12">
+    <div className="flex flex-col gap-10 text-zinc-900 text-sm">
       <div className="flex gap-6">
         <Image
           loader={profileImageLoader}
@@ -88,7 +90,7 @@ const Page: React.FC = () => {
           </p>
         </div>
         <div className="flex flex-col gap-4 bg-zinc-50 p-6 rounded-2xl">
-          <div className="flex justify-between items-center">
+          <div className="flex flex-col md:flex-row gap-2 md:justify-between md:items-center">
             <div>
               <h2 className="text-base font-bold">Followers and following</h2>
               <p className="text-zinc-500 text-sm font-normal">
@@ -100,7 +102,7 @@ const Page: React.FC = () => {
               handleChange={(value) => handleProfileChange("followers", value)}
             />
           </div>
-          <div className="flex justify-between items-center">
+          <div className="flex flex-col md:flex-row gap-2 md:justify-between md:items-center">
             <div>
               <h2 className="text-base font-bold">XP</h2>
               <p className="text-zinc-500 text-sm font-normal">
@@ -112,7 +114,7 @@ const Page: React.FC = () => {
               handleChange={(value) => handleProfileChange("xp", value)}
             />
           </div>
-          <div className="flex justify-between items-center">
+          <div className="flex flex-col md:flex-row gap-2 md:justify-between md:items-center">
             <div>
               <h2 className="text-base font-bold">Achievement badges</h2>
               <p className="text-zinc-500 text-sm font-normal">

@@ -34,7 +34,9 @@ const ResumeCard: React.FC<ResumeCardProps> = ({
       <div className="w-full">
         <h1 className="text-xl font-semibold mb-0.5">{title}</h1>
         <div className="flex justify-between items-center text-base mb-6">
-          <p className="font-normal">{`${location} · ${company || degree || ""}`}</p>
+          <p className="font-normal">{`${location} ${
+            location && (degree || company) ? "·" : ""
+          } ${company || degree || ""}`}</p>
           <strong className="font-semibold">{`${duration.from} - ${duration.to}`}</strong>
         </div>
         {description && (
@@ -48,7 +50,10 @@ const ResumeCard: React.FC<ResumeCardProps> = ({
             <ul role="list">
               {responsibilities.map((responsibility) => {
                 return (
-                  <li key={responsibility} className="flex gap-2 text-base font-normal text-zinc-500 mb-1">
+                  <li
+                    key={responsibility}
+                    className="flex gap-2 text-base font-normal text-zinc-500 mb-1"
+                  >
                     <Image
                       src="/marker.svg"
                       alt="list marker"
@@ -61,7 +66,9 @@ const ResumeCard: React.FC<ResumeCardProps> = ({
               })}
             </ul>
           </div>
-        ) : ""}
+        ) : (
+          ""
+        )}
       </div>
     </div>
   );

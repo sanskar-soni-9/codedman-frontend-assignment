@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect, useCallback } from "react";
 import {
   selectUserData,
   updateUserSocials,
@@ -19,16 +19,18 @@ const Page: React.FC = () => {
     dispatch(updateUserSocials({ type, value }));
   };
 
-  const resetForm = (): void => {
+  const resetForm = useCallback((): void => {
     dispatch(resetSocialsData());
-  };
+  }, [dispatch]);
 
   const applyChanges = (): void => {
     localStorage.setItem("userData", JSON.stringify(currentState));
   };
 
+  useEffect(() => resetForm, [resetForm]);
+
   return (
-    <div className="w-3/4 flex flex-col gap-10">
+    <div className="flex flex-col gap-10">
       <div className="flex flex-col gap-6">
         {socialsData.map((social) => {
           return (

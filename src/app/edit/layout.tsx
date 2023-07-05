@@ -7,11 +7,11 @@ interface EditLayoutProps {
 
 const EditLayout: React.FC<EditLayoutProps> = ({ children }) => {
   return (
-    <div className="flex mt-16 gap-60">
-      <div>
+    <div className="flex mt-16 gap-10">
+      <div className="hidden lg:block">
         <EditProfileMenu />
       </div>
-      <main className="grow w-4/5">{children}</main>
+      <div className="grow w-4/5"><main className="w-full xl:w-8/12 mx-auto">{children}</main></div>
     </div>
   );
 };

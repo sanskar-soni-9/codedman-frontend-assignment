@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect, useCallback } from "react";
 import {
   updateUserPortfolio,
   selectUserData,
@@ -26,22 +26,24 @@ const Page: React.FC = () => {
   const handleActiveCertificates = (id: number): void => {
     dispatch(updateUserPortfolio({ type: "certificate", id }));
   };
-  const resetForm = (): void => {
+  const resetForm = useCallback((): void => {
     dispatch(resetPortfolioData());
-  };
+  }, [dispatch]);
 
   const applyChanges = (): void => {
     localStorage.setItem("userData", JSON.stringify(currentState));
   };
 
+  useEffect(() => resetForm, [resetForm]);
+
   return (
-    <div className="w-fit flex flex-col gap-10 mb-12">
-      <div className="flex flex-col gap-6">
+    <div className="flex flex-col gap-10 mb-12">
+      <div className="flex flex-col gap-3">
         <div className="flex justify-between">
           <h1 className="text-2xl font-bold">Playgrounds</h1>
           <p className="text-base font-normal text-zinc-500">See all</p>
         </div>
-        <div className="grid grid-cols-2 gap-5">
+        <div className="grid sm:grid-cols-2 gap-5">
           {portfolioData.playgrounds.map((playground) => {
             return (
               <PlaygroundCard
@@ -60,12 +62,12 @@ const Page: React.FC = () => {
           })}
         </div>
       </div>
-      <div className="flex flex-col gap-6">
+      <div className="flex flex-col gap-3">
         <div className="flex justify-between">
           <h1 className="text-2xl font-bold">Projects</h1>
           <p className="text-base font-normal text-zinc-500">See all</p>
         </div>
-        <div className="grid grid-cols-2 gap-5">
+        <div className="grid sm:grid-cols-2 gap-5">
           {portfolioData.projects.map((project) => {
             return (
               <ProjectCard
@@ -85,12 +87,12 @@ const Page: React.FC = () => {
           })}
         </div>
       </div>
-      <div className="flex flex-col gap-6">
+      <div className="flex flex-col gap-3">
         <div className="flex justify-between">
           <h1 className="text-2xl font-bold">Certificates</h1>
           <p className="text-base font-normal text-zinc-500">See all</p>
         </div>
-        <div className="grid grid-cols-2 gap-5">
+        <div className="grid sm:grid-cols-2 gap-5">
           {portfolioData.certificates.map((certificate) => {
             return (
               <CertificateCard

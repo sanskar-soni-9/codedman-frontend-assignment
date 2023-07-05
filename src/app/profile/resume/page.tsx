@@ -13,7 +13,7 @@ const Resume: React.FC = () => {
         <h1 className="text-center text-2xl font-bold mb-6">About me</h1>
         <div className="bg-zinc-50 border border-zinc-100 rounded-2xl p-6">
           <p className="text-base font-medium mb-6">
-            {currentState.resume.about}
+            {currentState.profile.about}
           </p>
           <button className="py-2 px-4 rounded-lg text-sm font-semibold">
             Read more
@@ -62,19 +62,24 @@ const Resume: React.FC = () => {
         <h1 className="text-2xl font-bold mb-6">Tech skills</h1>
         <div className="flex gap-5 flex-wrap">
           {currentState.resume.techSkills.map((skill) => {
-            return (
-              <div key={skill.icon} className="flex gap-2 items-center p-2 pr-3 border border-zinc-100 rounded-lg bg-zinc-50">
-                <Image
-                  src={`/${skill.icon}.svg`}
-                  alt={`${skill.icon} icon`}
-                  width={20}
-                  height={20}
-                />
-                <strong className="text-base font-semibold">
-                  {skill.title}
-                </strong>
-              </div>
-            );
+            if (skill.show) {
+              return (
+                <div
+                  key={skill.icon}
+                  className="flex gap-2 items-center p-2 pr-3 border border-zinc-100 rounded-lg bg-zinc-50"
+                >
+                  <Image
+                    src={`/${skill.icon}.svg`}
+                    alt={`${skill.icon} icon`}
+                    width={20}
+                    height={20}
+                  />
+                  <strong className="text-base font-semibold">
+                    {skill.title}
+                  </strong>
+                </div>
+              );
+            }
           })}
         </div>
       </div>
@@ -83,7 +88,10 @@ const Resume: React.FC = () => {
         <div className="flex gap-5 flex-wrap">
           {currentState.resume.interests.map((interest) => {
             return (
-              <div key={interest} className="p-2 pr-3 border border-zinc-100 rounded-lg bg-zinc-50 text-base font-semibold">
+              <div
+                key={interest}
+                className="p-2 pr-3 border border-zinc-100 rounded-lg bg-zinc-50 text-base font-semibold"
+              >
                 {interest}
               </div>
             );
@@ -91,11 +99,14 @@ const Resume: React.FC = () => {
         </div>
       </div>
       <div>
-        <h1 className="text-2xl font-bold mb-6">Interests</h1>
+        <h1 className="text-2xl font-bold mb-6">Languages</h1>
         <div className="flex gap-5 flex-wrap">
           {currentState.resume.languages.map((language) => {
             return (
-              <div key={language.icon} className="flex gap-2 p-2 pr-3 border border-zinc-100 rounded-lg bg-zinc-50 text-base font-semibold">
+              <div
+                key={language.icon}
+                className="flex gap-2 p-2 pr-3 border border-zinc-100 rounded-lg bg-zinc-50 text-base font-semibold"
+              >
                 <Image
                   src={`/flags/${language.icon}.svg`}
                   alt={`${language.icon} icon`}

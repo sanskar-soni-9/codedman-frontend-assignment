@@ -15,7 +15,7 @@ export const userDataSlice = createSlice({
   reducers: {
     updateUserProfile: (
       state,
-      action: PayloadAction<{ type: string; value: string | boolean }>
+      action: PayloadAction<{ type: string; value: string | boolean | number }>
     ) => {
       if (typeof action.payload.value === "string") {
         switch (action.payload.type) {
@@ -35,11 +35,37 @@ export const userDataSlice = createSlice({
             state.profile.gender = action.payload.value;
             return;
           }
+          case "job": {
+            state.profile.job = action.payload.value;
+            if (action.payload.value) state.profile.lookingForJob = false;
+            return;
+          }
+          case "graduation": {
+            state.profile.graduation = action.payload.value;
+            return;
+          }
+          case "location": {
+            state.profile.location = action.payload.value;
+          }
+          case "techSkills": {
+            state.resume.techSkills.map((tech) => {
+              if (tech.title === action.payload.value) tech.show = !tech.show;
+            });
+          }
+          case "interestPush": {
+            if (
+              state.resume.interests.find(
+                (value) => value !== action.payload.value
+              )
+            )
+              state.resume.interests.push(action.payload.value);
+            return;
+          }
           default: {
             console.log("Invalid input");
           }
         }
-      } else {
+      } else if (typeof action.payload.value === "boolean") {
         switch (action.payload.type) {
           case "followers": {
             state.profile.privacy.followers = action.payload.value;
@@ -53,8 +79,27 @@ export const userDataSlice = createSlice({
             state.profile.privacy.achievementBadges = action.payload.value;
             return;
           }
+          case "jobStatus": {
+            state.profile.isEmployed = action.payload.value;
+            return;
+          }
+          case "lookingForJob": {
+            state.profile.lookingForJob = action.payload.value;
+            if (action.payload.value) state.profile.job = "";
+            return;
+          }
           default: {
             console.error("Invalid profile type");
+          }
+        }
+      } else {
+        switch (action.payload.type) {
+          case "interestPop": {
+            state.resume.interests.splice(action.payload.value, 1);
+            return;
+          }
+          default: {
+            console.error("invalid type");
           }
         }
       }
@@ -93,9 +138,10 @@ export const userDataSlice = createSlice({
           return;
         }
         case "certificate": {
-          state.portfolio.certificates.map(certificate => {
-            if(certificate.id === action.payload.id) certificate.show = !certificate.show;
-          })
+          state.portfolio.certificates.map((certificate) => {
+            if (certificate.id === action.payload.id)
+              certificate.show = !certificate.show;
+          });
           return;
         }
         default: {
@@ -105,6 +151,9 @@ export const userDataSlice = createSlice({
     },
     resetPortfolioData: (state) => {
       state.portfolio = initialState.portfolio;
+    },
+    resetResumeData: (state) => {
+      state.resume = initialState.resume;
     },
   },
 });
@@ -116,9 +165,11 @@ export const {
   resetSocialsData,
   updateUserPortfolio,
   resetPortfolioData,
+  resetResumeData,
 } = userDataSlice.actions;
 
 export const selectUserData = (state: RootState) => state.userData;
-export const selectPortfolioData = (state: RootState) => state.userData.portfolio;
+export const selectPortfolioData = (state: RootState) =>
+  state.userData.portfolio;
 
 export default userDataSlice.reducer;

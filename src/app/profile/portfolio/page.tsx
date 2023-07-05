@@ -6,15 +6,14 @@ import StatsCard from "@/app/components/StatsCard";
 import ProjectCard from "@/app/components/ProjectCard";
 import PlaygroundCard from "@/app/components/PlaygroundCard";
 import CertificateCard from "@/app/components/CertificateCard";
-import { cursorTo } from "readline";
 
 const Portfolio: React.FC = () => {
   const currentState = useAppSelector(selectUserData);
   return (
-    <div className="flex flex-col gap-10 mb-36">
+    <div className="flex flex-col gap-10 mb-16 lg:mb-36">
       <div>
         <h1 className="text-2xl font-bold mb-6">Stats</h1>
-        <div className="grid grid-cols-2 gap-5">
+        <div className="grid md:grid-cols-2 gap-5">
           <StatsCard
             src="/streak-2.svg"
             name="streak"
@@ -42,13 +41,13 @@ const Portfolio: React.FC = () => {
         </div>
       </div>
       <div>
-        <div className="flex justify-between mb-6">
+        <div className="flex flex-wrap gap-1 justify-between mb-6">
           <h1 className="text-2xl font-bold">Projects</h1>
           <p className="text-base font-semibold text-indigo-600 cursor-pointer">
             Create new project
           </p>
         </div>
-        <div className="grid grid-cols-2 gap-5">
+        <div className="grid md:grid-cols-2 gap-5">
           {currentState.portfolio.projects.map((project) => {
             if (project.show) {
               return (
@@ -70,13 +69,13 @@ const Portfolio: React.FC = () => {
         </div>
       </div>
       <div>
-        <div className="flex justify-between mb-6">
+        <div className="flex flex-wrap gap-1 justify-between mb-6">
           <h1 className="text-2xl font-bold">Playgrounds</h1>
           <p className="text-base font-semibold text-indigo-600 cursor-pointer">
             Create new playground
           </p>
         </div>
-        <div className="grid grid-cols-2 gap-5">
+        <div className="grid md:grid-cols-2 gap-5">
           {currentState.portfolio.playgrounds.map((playground) => {
             if (playground.show) {
               return (
@@ -98,13 +97,13 @@ const Portfolio: React.FC = () => {
         </div>
       </div>
       <div>
-        <div className="flex justify-between mb-6">
+        <div className="flex flex-wrap gap-1 justify-between mb-6">
           <h1 className="text-2xl font-bold">Certificates</h1>
           <p className="text-base font-semibold text-indigo-600 cursor-pointer">
             Add new certificate
           </p>
         </div>
-        <div className="grid grid-cols-2 gap-5">
+        <div className="grid md:grid-cols-2 gap-5">
           {currentState.portfolio.certificates.map((certificate) => {
             if (certificate.show) {
               return (
