@@ -1,34 +1,57 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# codedamn frontend assignment
 
-## Getting Started
+## About
 
-First, run the development server:
+This project is a frontend assignment for codedamn. It uses Redux Toolkit for global state management. The provided layout in the template has been successfully implemented with some additions. The project utilizes local storage to save changes made by the user, and the initial state is loaded from local storage to retrieve the saved version.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+## Project template link
+
+[Figma link](https://www.figma.com/file/TXLwYa51OaUfXRjO5AQvL0/Codedamn-Frontend-Assessment?node-id=1%3A2&mode=dev)
+
+## Technologies used
+
+- Next.js
+- React.js
+- Tailwind CSS
+- Redux Toolkit
+- Typescript
+
+## Features
+
+- Edit almost everything in profile
+- Save changes in localstorage
+- Responsive
+
+## Features yet to implement
+
+- Upload new profile picture
+- Edit cover
+- Add work experience
+- Add Education
+- Add language
+
+## Running project locally
+
+1. Clone the repo
+
+```shell
+git clone git@github.com:sanskar-soni-9/codedman-frontend-assignment.git
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Navigate to the project directory
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```shell
+cd path-to-project-dir/codedamn-frontend-assessment
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+3. Install dependencies
 
-## Learn More
+```shell
+npm i
+```
 
-To learn more about Next.js, take a look at the following resources:
+4. Start development server
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+```shell
+npm run dev
+```
