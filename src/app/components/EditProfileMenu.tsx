@@ -4,14 +4,11 @@ import { usePathname } from "next/navigation";
 
 import EditProfileMenuLink from "./EditProfileMenuLink";
 
-const EditProfileMenuList = [
-  { id: "profile", title: "Profile", link: "/edit/profile" },
-  { id: "socials", title: "Socials", link: "/edit/socials" },
-  { id: "portfolio", title: "Portfolio", link: "/edit/portfolio" },
-  { id: "resume", title: "Resume", link: "/edit/resume" },
-];
+interface EditProfileMenuProps {
+  navList: { id: string; title: string; link: string }[];
+}
 
-const EditProfileMenu: React.FC = () => {
+const EditProfileMenu: React.FC<EditProfileMenuProps> = ({ navList }) => {
   const path = usePathname().slice(6);
   const [activeMenuLink, setActiveMenuLink] = useState(path);
 
@@ -21,7 +18,7 @@ const EditProfileMenu: React.FC = () => {
 
   return (
     <div className="bg-zinc-100 py-6 pr-6 rounded-2xl text-zinc-400">
-      {EditProfileMenuList.map(({ id, title, link }) => {
+      {navList.map(({ id, title, link }) => {
         return (
           <EditProfileMenuLink
             id={id}

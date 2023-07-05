@@ -25,17 +25,17 @@ const ProfileLayout: React.FC<ProfileLayoutProps> = ({ children }) => {
               alt="profile picture"
               width={180}
               height={180}
-              className="translate-y-[110px] rounded-full border-2 border-zinc-100 mx-auto lg:mx-0"
+              className="w-36 h-36 lg:w-[180px] lg:h-[180px] translate-y-[92px] lg:translate-y-[110px] rounded-full border-2 border-zinc-100 mx-auto lg:mx-0"
             />
-            <div className="absolute -bottom-[168px] -right-5">
+            <div className="absolute -bottom-[152px] -right-4 lg:-bottom-[168px] lg:-right-5">
               <Image
                 src="/polygon.svg"
                 alt="level icon"
                 width={31}
                 height={33}
-                className="w-24 h-40"
+                className="w-20 h-36 lg:w-24 lg:h-40"
               />
-              <p className="absolute top-[62px] left-10 w-fit text-white text-2xl font-bold">
+              <p className="absolute top-14 left-[33px] lg:top-[62px] lg:left-10 w-fit text-white text-xl lg:text-2xl font-bold">
                 {currentState.profile.level}
               </p>
             </div>

@@ -36,7 +36,7 @@ const Page: React.FC = () => {
   useEffect(() => resetForm, [resetForm]);
 
   return (
-    <div className="flex flex-col gap-10 text-zinc-900 text-sm">
+    <div className="flex flex-col gap-10 text-zinc-900 text-sm mb-12">
       <div className="flex gap-6">
         <Image
           loader={profileImageLoader}

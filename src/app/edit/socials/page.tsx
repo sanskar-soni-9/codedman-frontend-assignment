@@ -30,7 +30,7 @@ const Page: React.FC = () => {
   useEffect(() => resetForm, [resetForm]);
 
   return (
-    <div className="flex flex-col gap-10">
+    <div className="flex flex-col gap-10 mb-12">
       <div className="flex flex-col gap-6">
         {socialsData.map((social) => {
           return (

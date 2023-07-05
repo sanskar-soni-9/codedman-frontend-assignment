@@ -84,7 +84,7 @@ export const Header: React.FC = () => {
               </>
               {isProfileMenu && (
                 <div className="absolute z-50 -left-9 w-28 text-sm border bg-white shadow-md">
-                  <div className="px-3 py-2 w-full hover:bg-gray-100 text-zinc-800 font-medium">
+                  <div className="px-3 py-2 w-full hover:bg-gray-100 text-zinc-800 font-medium border-b">
                     <Link href="/profile">Profile</Link>
                   </div>
                   <div className="px-3 py-2 w-full hover:bg-gray-100 text-zinc-800 font-medium">

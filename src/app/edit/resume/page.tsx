@@ -37,7 +37,7 @@ const Page: React.FC = () => {
   useEffect(() => resetForm, [resetForm]);
 
   return (
-    <div className="flex flex-col gap-10">
+    <div className="flex flex-col gap-10 mb-12">
       <div className="flex gap-3 items-center">
         <h1 className="text-base font-semibold">Currently:</h1>
         <div className="cursor-pointer flex rounded-lg border border-zinc-200 bg-zinc-50 text-sm font-medium">
