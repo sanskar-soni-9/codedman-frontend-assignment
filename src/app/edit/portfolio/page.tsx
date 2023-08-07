@@ -1,16 +1,17 @@
 "use client";
-import React, { useEffect, useCallback } from "react";
-import {
-  updateUserPortfolio,
-  selectUserData,
-  resetPortfolioData,
-} from "@/redux/userData";
-import { useAppSelector, useAppDispatch } from "@/redux/hooks";
+import CertificateCard from "@/app/components/CertificateCard";
 import PlaygroundCard from "@/app/components/PlaygroundCard";
 import ProjectCard from "@/app/components/ProjectCard";
 import PrimaryBtn from "@/app/components/button/PrimaryBtn";
 import SecondaryBtn from "@/app/components/button/SecondaryBtn";
-import CertificateCard from "@/app/components/CertificateCard";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import {
+  updateInitState,
+  resetPortfolioData,
+  selectUserData,
+  updateUserPortfolio,
+} from "@/redux/userData";
+import React, { useCallback, useEffect } from "react";
 
 const Page: React.FC = () => {
   const currentState = useAppSelector(selectUserData);
@@ -27,14 +28,19 @@ const Page: React.FC = () => {
     dispatch(updateUserPortfolio({ type: "certificate", id }));
   };
   const resetForm = useCallback((): void => {
+    console.log("reset");
     dispatch(resetPortfolioData());
   }, [dispatch]);
 
   const applyChanges = (): void => {
     localStorage.setItem("userData", JSON.stringify(currentState));
+    updateInitState(currentState);
   };
 
-  useEffect(() => resetForm, [resetForm]);
+  useEffect(() => {
+    console.log("mounted");
+    return resetForm;
+  }, [resetForm]);
 
   return (
     <div className="flex flex-col gap-10 mb-12">

@@ -1,16 +1,18 @@
 "use client";
-import React, { useEffect, useState, useCallback } from "react";
-import Image from "next/image";
-import { useAppSelector, useAppDispatch } from "@/redux/hooks";
-import {
-  selectUserData,
-  updateUserProfile,
-  resetProfileData,
-  resetResumeData,
-} from "@/redux/userData";
-import CustomInput from "@/app/components/input/CustomInput";
 import PrimaryBtn from "@/app/components/button/PrimaryBtn";
 import SecondaryBtn from "@/app/components/button/SecondaryBtn";
+import CustomInput from "@/app/components/input/CustomInput";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import {
+  resetProfileData,
+  resetResumeData,
+  selectUserData,
+  updateInitState,
+  updateUserProfile,
+  updateUserResume,
+} from "@/redux/userData";
+import Image from "next/image";
+import React, { useCallback, useEffect, useState } from "react";
 
 const Page: React.FC = () => {
   const currentState = useAppSelector(selectUserData);
@@ -20,9 +22,15 @@ const Page: React.FC = () => {
 
   const handleProfileChange = (
     type: string,
-    value: boolean | string | number
+    value: boolean | string ,
   ) => {
     dispatch(updateUserProfile({ type, value }));
+  };
+  const handleResumeChange = (
+    type: string,
+    value: string | number,
+  ) => {
+    dispatch(updateUserResume({ type, value }));
   };
 
   const resetForm = useCallback(() => {
@@ -32,9 +40,12 @@ const Page: React.FC = () => {
 
   const applyChanges = (): void => {
     localStorage.setItem("userData", JSON.stringify(currentState));
+    updateInitState(currentState);
   };
 
-  useEffect(() => resetForm, [resetForm]);
+  useEffect(() => {
+    return resetForm;
+  }, [resetForm]);
 
   return (
     <div className="flex flex-col gap-10 mb-12">
@@ -127,7 +138,7 @@ const Page: React.FC = () => {
                     ? "border-2 border-indigo-500 bg-indigo-50"
                     : "border border-zinc-200 bg-zinc-50"
                 }`}
-                onClick={() => handleProfileChange("techSkills", tech.title)}
+                onClick={() => handleResumeChange("techSkills", tech.title)}
               >
                 <div className="flex gap-2">
                   <Image
@@ -159,7 +170,7 @@ const Page: React.FC = () => {
             placeholder="Add Interest/hobby"
             handleChange={(value) => setInterestPushValue(value)}
             handleSubmit={() => {
-              handleProfileChange("interestPush", interestPushValue);
+              handleResumeChange("interestPush", interestPushValue);
               setInterestPushValue("");
             }}
           />
@@ -177,7 +188,7 @@ const Page: React.FC = () => {
                     width={20}
                     height={20}
                     className="cursor-pointer"
-                    onClick={() => handleProfileChange("interestPop", index)}
+                    onClick={() => handleResumeChange("interestPop", index)}
                   />
                 </li>
               );

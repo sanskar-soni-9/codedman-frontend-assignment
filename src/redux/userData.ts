@@ -1,13 +1,17 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import type { UserData } from "../../user";
 import { RootState } from "./store";
 import apiData from "../../user";
 
 let storageData = apiData;
-if (typeof localStorage !== "undefined" && localStorage.getItem("userData")) {
+if (typeof localStorage !== "undefined" && localStorage.getItem("userData"))
   storageData = JSON.parse(localStorage.getItem("userData") ?? "");
-}
 
-const initialState = storageData;
+let initialState: UserData = storageData;
+
+export const updateInitState = (state: UserData) => {
+  initialState = state;
+};
 
 export const userDataSlice = createSlice({
   name: "userData",
@@ -15,7 +19,7 @@ export const userDataSlice = createSlice({
   reducers: {
     updateUserProfile: (
       state,
-      action: PayloadAction<{ type: string; value: string | boolean | number }>
+      action: PayloadAction<{ type: string; value: string | boolean }>,
     ) => {
       if (typeof action.payload.value === "string") {
         switch (action.payload.type) {
@@ -46,20 +50,6 @@ export const userDataSlice = createSlice({
           }
           case "location": {
             state.profile.location = action.payload.value;
-          }
-          case "techSkills": {
-            state.resume.techSkills.map((tech) => {
-              if (tech.title === action.payload.value) tech.show = !tech.show;
-            });
-          }
-          case "interestPush": {
-            if (
-              state.resume.interests.find(
-                (value) => value !== action.payload.value
-              )
-            )
-              state.resume.interests.push(action.payload.value);
-            return;
           }
           default: {
             console.log("Invalid input");
@@ -93,15 +83,7 @@ export const userDataSlice = createSlice({
           }
         }
       } else {
-        switch (action.payload.type) {
-          case "interestPop": {
-            state.resume.interests.splice(action.payload.value, 1);
-            return;
-          }
-          default: {
-            console.error("invalid type");
-          }
-        }
+        console.error("invalid type");
       }
     },
     resetProfileData: (state) => {
@@ -109,7 +91,7 @@ export const userDataSlice = createSlice({
     },
     updateUserSocials: (
       state,
-      action: PayloadAction<{ type: string; value: string }>
+      action: PayloadAction<{ type: string; value: string }>,
     ) => {
       state.socials.map((social) => {
         if (social.type === action.payload.type)
@@ -121,7 +103,7 @@ export const userDataSlice = createSlice({
     },
     updateUserPortfolio: (
       state,
-      action: PayloadAction<{ type: string; id: number }>
+      action: PayloadAction<{ type: string; id: number }>,
     ) => {
       switch (action.payload.type) {
         case "playground": {
@@ -152,6 +134,44 @@ export const userDataSlice = createSlice({
     resetPortfolioData: (state) => {
       state.portfolio = initialState.portfolio;
     },
+    updateUserResume: (
+      state,
+      action: PayloadAction<{ type: string; value: string | number }>,
+    ) => {
+      if (typeof action.payload.value === "string") {
+        switch (action.payload.type) {
+          case "techSkills": {
+            state.resume.techSkills.map((tech) => {
+              if (tech.title === action.payload.value) tech.show = !tech.show;
+            });
+          }
+          case "interestPush": {
+            if (
+              state.resume.interests.find(
+                (value) => value !== action.payload.value,
+              )
+            )
+              state.resume.interests.push(action.payload.value);
+            return;
+          }
+          default: {
+            console.log("Invalid input");
+          }
+        }
+      } else if (typeof action.payload.value === "number") {
+        switch (action.payload.type) {
+          case "interestPop": {
+            state.resume.interests.splice(action.payload.value, 1);
+            return;
+          }
+          default: {
+            console.error("invalid type");
+          }
+        }
+      } else {
+        console.error("invalid type");
+      }
+    },
     resetResumeData: (state) => {
       state.resume = initialState.resume;
     },
@@ -165,6 +185,7 @@ export const {
   resetSocialsData,
   updateUserPortfolio,
   resetPortfolioData,
+  updateUserResume,
   resetResumeData,
 } = userDataSlice.actions;
 

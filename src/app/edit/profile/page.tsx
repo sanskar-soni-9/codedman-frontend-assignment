@@ -1,18 +1,19 @@
 "use client";
-import React, { useEffect, useCallback } from "react";
-import {
-  updateUserProfile,
-  resetProfileData,
-  selectUserData,
-} from "@/redux/userData";
-import { useAppSelector, useAppDispatch } from "@/redux/hooks";
-import Image from "next/image";
 import PrimaryBtn from "@/app/components/button/PrimaryBtn";
 import SecondaryBtn from "@/app/components/button/SecondaryBtn";
 import CustomInput from "@/app/components/input/CustomInput";
-import CustomTextarea from "@/app/components/input/CustomTextarea";
 import CustomInputDropdown from "@/app/components/input/CustomInputDropdown";
 import CustomPrimaryCheckBox from "@/app/components/input/CustomPrimaryCheckbox";
+import CustomTextarea from "@/app/components/input/CustomTextarea";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import {
+  resetProfileData,
+  selectUserData,
+  updateUserProfile,
+  updateInitState,
+} from "@/redux/userData";
+import Image from "next/image";
+import React, { useCallback, useEffect } from "react";
 
 const Page: React.FC = () => {
   const currentState = useAppSelector(selectUserData);
@@ -31,9 +32,12 @@ const Page: React.FC = () => {
 
   const applyChanges = (): void => {
     localStorage.setItem("userData", JSON.stringify(currentState));
+    updateInitState(currentState);
   };
 
-  useEffect(() => resetForm, [resetForm]);
+  useEffect(() => {
+    return resetForm;
+  }, [resetForm]);
 
   return (
     <div className="flex flex-col gap-10 text-zinc-900 text-sm mb-12">

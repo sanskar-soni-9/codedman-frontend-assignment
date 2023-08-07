@@ -4,6 +4,7 @@ import {
   selectUserData,
   updateUserSocials,
   resetSocialsData,
+  updateInitState,
 } from "@/redux/userData";
 import { useAppSelector, useAppDispatch } from "@/redux/hooks";
 import CustomInput from "@/app/components/input/CustomInput";
@@ -25,9 +26,12 @@ const Page: React.FC = () => {
 
   const applyChanges = (): void => {
     localStorage.setItem("userData", JSON.stringify(currentState));
+    updateInitState(currentState);
   };
 
-  useEffect(() => resetForm, [resetForm]);
+  useEffect(() => {
+    return resetForm;
+  }, [resetForm]);
 
   return (
     <div className="flex flex-col gap-10 mb-12">
