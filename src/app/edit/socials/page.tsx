@@ -7,9 +7,9 @@ import {
   updateInitState,
 } from "@/redux/userData";
 import { useAppSelector, useAppDispatch } from "@/redux/hooks";
-import CustomInput from "@/app/components/input/CustomInput";
-import PrimaryBtn from "@/app/components/button/PrimaryBtn";
-import SecondaryBtn from "@/app/components/button/SecondaryBtn";
+import CustomInput from "@/app/_components/input/CustomInput";
+import PrimaryBtn from "@/app/_components/button/PrimaryBtn";
+import SecondaryBtn from "@/app/_components/button/SecondaryBtn";
 
 const Page: React.FC = () => {
   const currentState = useAppSelector(selectUserData);

@@ -1,9 +1,9 @@
 "use client";
-import CertificateCard from "@/app/components/CertificateCard";
-import PlaygroundCard from "@/app/components/PlaygroundCard";
-import ProjectCard from "@/app/components/ProjectCard";
-import PrimaryBtn from "@/app/components/button/PrimaryBtn";
-import SecondaryBtn from "@/app/components/button/SecondaryBtn";
+import CertificateCard from "@/app/_components/CertificateCard";
+import PlaygroundCard from "@/app/_components/PlaygroundCard";
+import ProjectCard from "@/app/_components/ProjectCard";
+import PrimaryBtn from "@/app/_components/button/PrimaryBtn";
+import SecondaryBtn from "@/app/_components/button/SecondaryBtn";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import {
   updateInitState,
@@ -28,7 +28,6 @@ const Page: React.FC = () => {
     dispatch(updateUserPortfolio({ type: "certificate", id }));
   };
   const resetForm = useCallback((): void => {
-    console.log("reset");
     dispatch(resetPortfolioData());
   }, [dispatch]);
 
@@ -38,7 +37,6 @@ const Page: React.FC = () => {
   };
 
   useEffect(() => {
-    console.log("mounted");
     return resetForm;
   }, [resetForm]);
 

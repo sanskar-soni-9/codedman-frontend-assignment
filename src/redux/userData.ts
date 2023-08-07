@@ -50,9 +50,10 @@ export const userDataSlice = createSlice({
           }
           case "location": {
             state.profile.location = action.payload.value;
+            return;
           }
           default: {
-            console.log("Invalid input");
+            console.error("Invalid input");
           }
         }
       } else if (typeof action.payload.value === "boolean") {
@@ -144,6 +145,7 @@ export const userDataSlice = createSlice({
             state.resume.techSkills.map((tech) => {
               if (tech.title === action.payload.value) tech.show = !tech.show;
             });
+            return;
           }
           case "interestPush": {
             if (
@@ -155,7 +157,7 @@ export const userDataSlice = createSlice({
             return;
           }
           default: {
-            console.log("Invalid input");
+            console.error("Invalid input");
           }
         }
       } else if (typeof action.payload.value === "number") {
@@ -190,7 +192,5 @@ export const {
 } = userDataSlice.actions;
 
 export const selectUserData = (state: RootState) => state.userData;
-export const selectPortfolioData = (state: RootState) =>
-  state.userData.portfolio;
 
 export default userDataSlice.reducer;

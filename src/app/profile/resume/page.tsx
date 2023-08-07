@@ -3,7 +3,7 @@ import React from "react";
 import Image from "next/image";
 import { useAppSelector } from "@/redux/hooks";
 import { selectUserData } from "@/redux/userData";
-import ResumeCard from "@/app/components/ResumeCard";
+import ResumeCard from "@/app/_components/ResumeCard";
 
 const Resume: React.FC = () => {
   const currentState = useAppSelector(selectUserData);

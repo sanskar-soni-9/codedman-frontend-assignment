@@ -2,10 +2,10 @@
 import React from "react";
 import { useAppSelector } from "@/redux/hooks";
 import { selectUserData } from "@/redux/userData";
-import StatsCard from "@/app/components/StatsCard";
-import ProjectCard from "@/app/components/ProjectCard";
-import PlaygroundCard from "@/app/components/PlaygroundCard";
-import CertificateCard from "@/app/components/CertificateCard";
+import StatsCard from "@/app/_components/StatsCard";
+import ProjectCard from "@/app/_components/ProjectCard";
+import PlaygroundCard from "@/app/_components/PlaygroundCard";
+import CertificateCard from "@/app/_components/CertificateCard";
 
 const Portfolio: React.FC = () => {
   const currentState = useAppSelector(selectUserData);

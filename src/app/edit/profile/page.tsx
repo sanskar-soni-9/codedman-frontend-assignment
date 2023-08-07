@@ -1,10 +1,10 @@
 "use client";
-import PrimaryBtn from "@/app/components/button/PrimaryBtn";
-import SecondaryBtn from "@/app/components/button/SecondaryBtn";
-import CustomInput from "@/app/components/input/CustomInput";
-import CustomInputDropdown from "@/app/components/input/CustomInputDropdown";
-import CustomPrimaryCheckBox from "@/app/components/input/CustomPrimaryCheckbox";
-import CustomTextarea from "@/app/components/input/CustomTextarea";
+import PrimaryBtn from "@/app/_components/button/PrimaryBtn";
+import SecondaryBtn from "@/app/_components/button/SecondaryBtn";
+import CustomInput from "@/app/_components/input/CustomInput";
+import CustomInputDropdown from "@/app/_components/input/CustomInputDropdown";
+import CustomPrimaryCheckBox from "@/app/_components/input/CustomPrimaryCheckbox";
+import CustomTextarea from "@/app/_components/input/CustomTextarea";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import {
   resetProfileData,

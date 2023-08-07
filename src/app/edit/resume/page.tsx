@@ -1,7 +1,7 @@
 "use client";
-import PrimaryBtn from "@/app/components/button/PrimaryBtn";
-import SecondaryBtn from "@/app/components/button/SecondaryBtn";
-import CustomInput from "@/app/components/input/CustomInput";
+import PrimaryBtn from "@/app/_components/button/PrimaryBtn";
+import SecondaryBtn from "@/app/_components/button/SecondaryBtn";
+import CustomInput from "@/app/_components/input/CustomInput";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import {
   resetProfileData,

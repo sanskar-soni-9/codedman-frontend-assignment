@@ -1,6 +1,6 @@
 import React from "react";
-import EditProfileMenu from "../components/EditProfileMenu";
-import EditProfileDropdown from "../components/EditProfileDropdown";
+import EditProfileMenu from "../_components/EditProfileMenu";
+import EditProfileDropdown from "../_components/EditProfileDropdown";
 
 interface EditLayoutProps {
   children: React.ReactNode;

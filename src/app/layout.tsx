@@ -1,7 +1,7 @@
 import { Inter } from "next/font/google";
 
-import { Header } from "./components/Header";
-import { Providers } from "@/redux/provider";
+import { Header } from "./_components/Header";
+import { StoreProvider } from "@/redux/provider";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -19,10 +19,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className + " px-10 pt-5 text-zinc-900"}>
-        <Providers>
+        <StoreProvider>
           <Header />
           {children}
-        </Providers>
+        </StoreProvider>
       </body>
     </html>
   );
